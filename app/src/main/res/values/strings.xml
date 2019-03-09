@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Becksco</string>
-    <string name="action_settings">Settings</string>
+    <string name="sign_button">Sign</string>
+    <string name="sign_hint">Input your name</string>
+    <string name="post_button">작성하기</string>
+    <string name="failure_message">Failure</string>
+    <string name="failure_sign_message">Failed to sign</string>
+
 </resources>

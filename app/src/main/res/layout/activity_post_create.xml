@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/post_title_height"
+            android:id="@+id/titleText"/>
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/post_body_height"
+            android:id="@+id/bodyText"/>
+
+    <Button
+            android:layout_width="@dimen/post_button_width"
+            android:layout_height="@dimen/post_button_height"
+            android:text="@string/post_button"
+            android:layout_gravity="center"
+            android:id="@+id/postSubmitBtn" />
+
+</LinearLayout>

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.weroo.becksco">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:name=".AndroidTutorial"
@@ -13,7 +13,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".Avtivity_home"
+                android:name=".splash.SplashActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,6 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".base.BaseActivity"></activity>
+        <activity android:name=".home.HomeActivity"></activity>
+        <activity android:name=".sign.SignActivity"></activity>
+        <activity android:name=".post.PostCreateActivity"></activity>
+
+        <meta-data
+                android:name="com.google.android.actions"
+                android:resource="@drawable/layer_splash_background"/>
     </application>
 
 </manifest>
