@@ -30,9 +30,7 @@ class SignActivity: BaseActivity() {
 
     private fun onClickSignButton() {
         //postApi 객체를 queue에 담고 callback을 실행
-        // sign은 서버에 요청하는 행위가 정의된 객체인 call 이라는 retrofit 객체를 반환
-        // enqueue는 retrofit 객체가 서버로 요청하는 행위, 요청 답변이 오면 onResponse, 없으면 onFailure
-        postApi.sign(User(signEditText.text.toString()))
+         postApi.sign(User(signEditText.text.toString()))
             .enqueue(object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     handleSign(response.code(), response.body())
