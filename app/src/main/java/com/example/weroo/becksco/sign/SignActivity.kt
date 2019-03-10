@@ -20,7 +20,7 @@ class SignActivity: BaseActivity() {
         // activity_sign을 그려줌
         setContentView(R.layout.activity_sign)
 
-        // signButton은 activity_sign의 id임
+        // signButton은 activity_sign의 id
         // setOnClickListener는 click event가 실행될 때 어떤 행동을 해주라는 뜻
         // 즉 signButton을 id로 가지고 있는 button이 클릭될 때 onClickSignButton() 실행해주라는 의미
         signButton.setOnClickListener {
@@ -30,6 +30,8 @@ class SignActivity: BaseActivity() {
 
     private fun onClickSignButton() {
         //postApi 객체를 queue에 담고 callback을 실행
+        // sign은 서버에 요청하는 행위가 정의된 객체인 call 이라는 retrofit 객체를 반환
+        // enqueue는 retrofit 객체가 서버로 요청하는 행위, 요청 답변이 오면 onResponse, 없으면 onFailure
         postApi.sign(User(signEditText.text.toString()))
             .enqueue(object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
