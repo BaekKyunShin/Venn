@@ -1,6 +1,8 @@
 package com.example.weroo.becksco.post
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.example.weroo.becksco.R
 import com.example.weroo.becksco.api.postApi
@@ -19,7 +21,7 @@ import retrofit2.Response
 // postOnBoard로 요청을 보내는 end-point (요청을 보내는 경로)에서는
 // 이를 post 라는 객체로 가공해 DB에 저장하는 일을 하고 있기 때문에 해당 API를 통해 데이터를 저장할 수 있음
 
-// postOnBoard의 요청 서버가 답변을 하는데,
+// postOnBoard의 요청에 대해 서버가 답변을 하는데,
 // retrofit 에서는 이러한 답변을 처리하기 위해서 Callback 이라는 인터페이스를 사용
 // Callback 인터페이스는 generic을 사용하여 생성함
 // Callback<T>에서 서버에서 넘어올 것으로 예상되는 답변을 T 라는 class 에 매핑 시키고 싶을 때
@@ -51,19 +53,25 @@ class PostCreateActivity: BaseActivity() {
         ).enqueue(object : Callback<PostCreateDTO> {
             override fun onResponse(call: Call<PostCreateDTO>, response: Response<PostCreateDTO>) {
                 handlePostOnBoard(response.code())
+
             }
 
             override fun onFailure(call: Call<PostCreateDTO>, t: Throwable) {
+                Toast.makeText(this@PostCreateActivity, R.string.failure_message, Toast.LENGTH_SHORT).show()
 
             }
         })
-        Toast.makeText(this, "Post on board", Toast.LENGTH_SHORT).show()
+
     }
+
     fun handlePostOnBoard(code: Int) {
         if (code != 201) {
             return
         }
+        Toast.makeText(this, R.string.post_create_message, Toast.LENGTH_SHORT).show()
         finish()
     }
+
 }
+
 
