@@ -9,6 +9,7 @@ import com.example.weroo.becksco.api.postApi
 import com.example.weroo.becksco.base.BaseActivity
 import com.example.weroo.becksco.model.PostCreateDTO
 import kotlinx.android.synthetic.main.activity_post_create.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,12 +40,11 @@ class PostCreateActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_create)
 
-        postSubmitBtn.setOnClickListener {
-            onClickPostSubmit()
-        }
+        setSupportActionBar(toolbar)
+
     }
 
-    private fun onClickPostSubmit() {
+    private fun postOnBoard() {
         postApi.postOnBoard(
             PostCreateDTO(
                 postTitle.text.toString(),
@@ -61,17 +61,15 @@ class PostCreateActivity: BaseActivity() {
 
             }
         })
-
+        Toast.makeText(this, R.string.post_create_message, Toast.LENGTH_SHORT).show()
     }
 
     fun handlePostOnBoard(code: Int) {
         if (code != 201) {
             return
         }
-        Toast.makeText(this, R.string.post_create_message, Toast.LENGTH_SHORT).show()
         finish()
     }
-
 }
 
 

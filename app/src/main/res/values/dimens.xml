@@ -7,4 +7,10 @@
     <dimen name="post_button_width">200dp</dimen>
     <dimen name="post_button_height">60dp</dimen>
     <dimen name="toolbar_elevation">5dp</dimen>
+    <dimen name="post_summary_card_margin">7dp</dimen>
+    <dimen name="post_summary_card_radius">5dp</dimen>
+    <dimen name="post_summary_card_elevation">5dp</dimen>
+    <dimen name="post_summary_card_textview_padding">10dp</dimen>
+    <dimen name="post_summary_title">20sp</dimen>
+    <dimen name="post_summary_writer">10sp</dimen>
 </resources>
