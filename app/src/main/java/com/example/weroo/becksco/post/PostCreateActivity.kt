@@ -47,8 +47,8 @@ class PostCreateActivity: BaseActivity() {
     private fun onClickPostSubmit() {
         postApi.postOnBoard(
             PostCreateDTO(
-                titleText.text.toString(),
-                bodyText.text.toString()
+                postTitle.text.toString(),
+                postContents.text.toString()
             )
         ).enqueue(object : Callback<PostCreateDTO> {
             override fun onResponse(call: Call<PostCreateDTO>, response: Response<PostCreateDTO>) {

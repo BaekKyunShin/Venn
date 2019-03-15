@@ -6,5 +6,7 @@
     <string name="failure_message">Failure</string>
     <string name="failure_sign_message">Failed to sign</string>
     <string name="post_create_message">Post on board</string>
+    <string name="post_title">Title</string>
+    <string name="post_contents">Contents</string>
 
 </resources>

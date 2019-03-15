@@ -4,15 +4,29 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/post_title_height"
-            android:id="@+id/titleText"/>
+    <include
+            layout="@layout/layout_toolbar" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_title"/>
 
     <EditText
+            android:id="@+id/postTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/post_title_height" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_contents"/>
+
+    <EditText
+            android:id="@+id/postContents"
             android:layout_width="match_parent"
             android:layout_height="@dimen/post_body_height"
-            android:id="@+id/bodyText"/>
+            android:gravity="top|left"/>
 
     <Button
             android:layout_width="@dimen/post_button_width"
