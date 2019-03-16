@@ -1,4 +1,6 @@
 package com.example.weroo.becksco.model
 
-class HomeResponse(val user: User) {
-}
+data class HomeResponse(
+    val user: User,
+    val posts: List<PostSummaryDTO>
+)

@@ -40,8 +40,9 @@ class PostCreateActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_create)
 
-        setSupportActionBar(toolbar)
-
+        postSubmitBtn.setOnClickListener {
+            postOnBoard()
+        }
     }
 
     private fun postOnBoard() {
@@ -70,6 +71,6 @@ class PostCreateActivity: BaseActivity() {
         }
         finish()
     }
-}
 
+}
 

@@ -23,6 +23,9 @@ interface PostBoardService {
     @POST("/posts")
     fun postOnBoard(@Body post: PostCreateDTO): Call<PostCreateDTO>
 
+    @GET("/home")
+    fun home(@Query("page") page: Int): Call<HomeResponse>
+
     @GET("/posts") // "/posts?page=1"
     fun getPosts(@Query("page") page: Int): Call<Page<PostSummaryDTO>>
     // 게시글을 가져오는데 페이지에 따라 내용물이 바뀌는 파라미터가 담기는 곳
