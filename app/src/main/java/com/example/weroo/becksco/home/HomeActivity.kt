@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        requestHome(0)
+        requestHome(1)
     }
 
     private fun initHome() {
@@ -47,27 +47,27 @@ class HomeActivity : AppCompatActivity() {
 
         // adapter로는 postSummaryAdapter 설정
         postSummaryList.adapter = postSummaryAdapter
-        requestHome(0)
+        requestHome(1)
     }
 
     private fun requestHome(page: Int) {
-        postApi.home(page).enqueue(object : Callback<HomeResponse> {
-            override fun onResponse(call: Call<HomeResponse>, response: Response<HomeResponse>) {
+        postApi.getPosts(page).enqueue(object : Callback<Page<PostSummaryDTO>> {
+            override fun onResponse(call: Call<Page<PostSummaryDTO>>, response: Response<Page<PostSummaryDTO>>) {
                 if (response.code() != 200) {
                     Toast.makeText(this@HomeActivity, "What the .. 201", Toast.LENGTH_SHORT).show()
                     return
                 }
-                val user = response.body()?.user
-                if (user == null) {
+                val content = response.body()?.content
+                if (content == null) {
                     signOut()
                     return
                 }
 
-                postSummaryAdapter.resetPosts(response.body()?.posts ?: listOf())
+                postSummaryAdapter.resetPosts(response.body()?.content ?: listOf())
                 postSummaryAdapter.notifyDataSetChanged()
-                Toast.makeText(this@HomeActivity, "user name: ${response.body()?.user?.name ?: "No User"}, posts: ${response.body()?.posts?.size}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@HomeActivity, "user name: ", Toast.LENGTH_SHORT).show()
             }
-            override fun onFailure(call: Call<HomeResponse>, t: Throwable) {
+            override fun onFailure(call: Call<Page<PostSummaryDTO>>, t: Throwable) {
                 Toast.makeText(this@HomeActivity, "What the ..", Toast.LENGTH_SHORT).show()
             }
         })
@@ -77,8 +77,6 @@ class HomeActivity : AppCompatActivity() {
         startActivity(Intent(this, SignActivity::class.java))
         finish()
     }
-
-
     }
 
 
