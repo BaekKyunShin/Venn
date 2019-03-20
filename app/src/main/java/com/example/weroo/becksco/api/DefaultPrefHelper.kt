@@ -21,6 +21,10 @@ class DefaultPrefHelper private constructor(context: Context) {
         return sharedPreference().getString(key, null)
     }
 
+    fun getBoolean(key: String): Boolean {
+        return sharedPreference().getBoolean(key, false)
+    }
+
     fun setStringSet(key: String, value: Set<String>) {
         sharedPreference().edit().run {
             putStringSet(key, value)
@@ -35,6 +39,12 @@ class DefaultPrefHelper private constructor(context: Context) {
         }
     }
 
+    fun setBoolean(key: String, value: Boolean) {
+        sharedPreference().edit().run {
+            putBoolean(key, value)
+            apply()
+        }
+    }
     companion object {
         @Volatile
         private var INSTANCE: DefaultPrefHelper? = null

@@ -40,21 +40,20 @@ class PostCreateActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_create)
 
-        postSubmitBtn.setOnClickListener {
-            postOnBoard()
-        }
+        setSupportActionBar(toolbar)
+
+//        postSubmitBtn.setOnClickListener {
+//           postOnBoard()
+//        }
     }
 
     private fun postOnBoard() {
-        postApi.postOnBoard(
-            PostCreateDTO(
+        postApi.postOnBoard(PostCreateDTO(
                 postTitle.text.toString(),
                 postContents.text.toString()
-            )
-        ).enqueue(object : Callback<PostCreateDTO> {
+            )).enqueue(object : Callback<PostCreateDTO> {
             override fun onResponse(call: Call<PostCreateDTO>, response: Response<PostCreateDTO>) {
                 handlePostOnBoard(response.code())
-
             }
 
             override fun onFailure(call: Call<PostCreateDTO>, t: Throwable) {
@@ -62,15 +61,27 @@ class PostCreateActivity: BaseActivity() {
 
             }
         })
-        Toast.makeText(this, R.string.post_create_message, Toast.LENGTH_SHORT).show()
     }
 
     fun handlePostOnBoard(code: Int) {
         if (code != 201) {
+            Toast.makeText(this, R.string.post_create_message, Toast.LENGTH_SHORT).show()
             return
         }
         finish()
     }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.post, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item?.itemId
+        when (id) {
+            R.id.post_action -> postOnBoard()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }
 

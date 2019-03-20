@@ -2,13 +2,20 @@ package com.example.weroo.becksco.splash
 
 import android.content.Intent
 import android.os.Bundle
+import com.example.weroo.becksco.api.DefaultPrefHelper
 import com.example.weroo.becksco.base.BaseActivity
+import com.example.weroo.becksco.home.HomeActivity
+import com.example.weroo.becksco.sign.SIGN_PREFERENCE
 import com.example.weroo.becksco.sign.SignActivity
 
 class SplashActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (DefaultPrefHelper.instance().getBoolean(SIGN_PREFERENCE)) {
+            startActivity(Intent(this, HomeActivity::class.java))
+            return
+        }
         startActivity(Intent(this, SignActivity::class.java))
     }
 }

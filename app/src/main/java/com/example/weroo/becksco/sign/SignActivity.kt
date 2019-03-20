@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.weroo.becksco.R
+import com.example.weroo.becksco.api.DefaultPrefHelper
 import com.example.weroo.becksco.api.postApi
 import com.example.weroo.becksco.base.BaseActivity
 import com.example.weroo.becksco.home.HomeActivity
@@ -12,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_sign.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+const val SIGN_PREFERENCE = "sign_preference"
 
 class SignActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +52,7 @@ private fun handleSign(code: Int, user: User?) {
         return
     }
 
+    DefaultPrefHelper.instance().setBoolean(SIGN_PREFERENCE, true)
     // this: signActivity / HomeActivity 실행
     startActivity(Intent(this, HomeActivity::class.java))
 }

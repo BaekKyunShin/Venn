@@ -8,5 +8,6 @@
     <string name="post_create_message">Post on board</string>
     <string name="post_title">Title</string>
     <string name="post_contents">Contents</string>
+    <string name="menu_post">Post</string>
 
 </resources>

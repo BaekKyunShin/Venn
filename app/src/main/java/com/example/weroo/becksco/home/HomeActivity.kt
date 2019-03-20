@@ -12,10 +12,13 @@ import com.example.weroo.becksco.model.HomeResponse
 import com.example.weroo.becksco.model.Page
 import com.example.weroo.becksco.model.PostSummaryDTO
 import com.example.weroo.becksco.post.PostCreateActivity
+import com.example.weroo.becksco.sign.SIGN_PREFERENCE
+import com.example.weroo.becksco.sign.SignActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.item_post_summary.*
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class HomeActivity : AppCompatActivity() {
 
@@ -26,6 +29,11 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         initHome()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requestHome(0)
     }
 
     private fun initHome() {
@@ -39,5 +47,38 @@ class HomeActivity : AppCompatActivity() {
 
         // adapter로는 postSummaryAdapter 설정
         postSummaryList.adapter = postSummaryAdapter
+        requestHome(0)
     }
+
+    private fun requestHome(page: Int) {
+        postApi.home(page).enqueue(object : Callback<HomeResponse> {
+            override fun onResponse(call: Call<HomeResponse>, response: Response<HomeResponse>) {
+                if (response.code() != 200) {
+                    Toast.makeText(this@HomeActivity, "What the .. 201", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                val user = response.body()?.user
+                if (user == null) {
+                    signOut()
+                    return
+                }
+
+                postSummaryAdapter.resetPosts(response.body()?.posts ?: listOf())
+                postSummaryAdapter.notifyDataSetChanged()
+                Toast.makeText(this@HomeActivity, "user name: ${response.body()?.user?.name ?: "No User"}, posts: ${response.body()?.posts?.size}", Toast.LENGTH_SHORT).show()
+            }
+            override fun onFailure(call: Call<HomeResponse>, t: Throwable) {
+                Toast.makeText(this@HomeActivity, "What the ..", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
+    private fun signOut() {
+        DefaultPrefHelper.instance().setBoolean(SIGN_PREFERENCE, false);
+        startActivity(Intent(this, SignActivity::class.java))
+        finish()
+    }
+
+
+    }
+
+

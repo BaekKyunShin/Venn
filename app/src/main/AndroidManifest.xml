@@ -19,20 +19,19 @@
                 android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <activity android:name=".base.BaseActivity"></activity>
         <activity android:name=".home.HomeActivity"></activity>
-        <activity android:name=".sign.SignActivity"></activity>
-        <activity android:name=".post.PostCreateActivity"
-            android:theme="@style/NoActionTheme"></activity>
-
-        <meta-data
-                android:name="com.google.android.actions"
-                android:resource="@drawable/layer_splash_background"/>
+        <activity
+                android:name=".sign.SignActivity"
+                android:noHistory="true">
+        </activity>
+        <activity
+                android:name=".post.PostCreateActivity"
+                android:theme="@style/NoActionTheme">
+        </activity>
     </application>
-
 </manifest>

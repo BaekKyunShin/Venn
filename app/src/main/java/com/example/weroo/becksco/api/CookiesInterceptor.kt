@@ -3,7 +3,7 @@ package com.example.weroo.becksco.api
 import okhttp3.Interceptor
 import okhttp3.Response
 
-const val API_PREFERENCE = "api_preference"
+const val COOKIE_PREFERENCE = "api_preference"
 
 // SharedPreference에 이미 cookies가 저장된 상태에서 User가 requset를 보낼 때
 // SharedPreference에서 cookies를 가져오는 Interceptor
@@ -12,7 +12,7 @@ class AddCookiesInterceptor: Interceptor {
         val builder = chain.request().newBuilder()
 
         // Get cookie from shared preference
-        val cookies = DefaultPrefHelper.instance().getStringSet(API_PREFERENCE)
+        val cookies = DefaultPrefHelper.instance().getStringSet(COOKIE_PREFERENCE)
         for (cookie in cookies) {
             builder.addHeader("Cookie", cookie.toString())
         }
@@ -33,7 +33,7 @@ class ReceivedCookiesInterceptor: Interceptor {
         }
 
         // Set cookie to shared preferences
-        DefaultPrefHelper.instance().setStringSet(API_PREFERENCE, cookies.toSet())
+        DefaultPrefHelper.instance().setStringSet(COOKIE_PREFERENCE, cookies.toSet())
         return response
     }
 }
