@@ -12,10 +12,10 @@ class SplashActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (DefaultPrefHelper.instance().getBoolean(SIGN_PREFERENCE)) {
-            startActivity(Intent(this, HomeActivity::class.java))
-            return
-        }
+//        if (DefaultPrefHelper.instance().getBoolean(SIGN_PREFERENCE)) {
+//            startActivity(Intent(this, HomeActivity::class.java))
+//            return
+//        }
         startActivity(Intent(this, SignActivity::class.java))
     }
 }

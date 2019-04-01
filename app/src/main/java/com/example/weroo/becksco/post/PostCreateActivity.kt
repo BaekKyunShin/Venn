@@ -40,11 +40,8 @@ class PostCreateActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_create)
 
+        // toolbar를 ActionBar처럼 작용하게 세팅
         setSupportActionBar(toolbar)
-
-//        postSubmitBtn.setOnClickListener {
-//           postOnBoard()
-//        }
     }
 
     private fun postOnBoard() {
@@ -53,6 +50,7 @@ class PostCreateActivity: BaseActivity() {
                 postContents.text.toString()
             )).enqueue(object : Callback<PostCreateDTO> {
             override fun onResponse(call: Call<PostCreateDTO>, response: Response<PostCreateDTO>) {
+
                 handlePostOnBoard(response.code())
             }
 
@@ -64,9 +62,9 @@ class PostCreateActivity: BaseActivity() {
     }
 
     fun handlePostOnBoard(code: Int) {
-        if (code != 201) {
-            Toast.makeText(this, R.string.post_create_message, Toast.LENGTH_SHORT).show()
-            return
+                if (code != 201) {
+                    Toast.makeText(this,  code.toString(),Toast.LENGTH_SHORT).show()
+                    return
         }
         finish()
     }

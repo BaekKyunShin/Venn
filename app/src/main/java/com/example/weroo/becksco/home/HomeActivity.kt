@@ -31,6 +31,7 @@ class HomeActivity : AppCompatActivity() {
         initHome()
     }
 
+    // 화면이 가려졌다가 다시 불리면 onResume이 불려 서버에 저장된 데이터를 다시 가져옴
     override fun onResume() {
         super.onResume()
         requestHome(1)
@@ -64,8 +65,10 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 postSummaryAdapter.resetPosts(response.body()?.content ?: listOf())
+
+                // data가 바뀌었다고 view에 알려주는 역할
                 postSummaryAdapter.notifyDataSetChanged()
-                Toast.makeText(this@HomeActivity, "user name: ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@HomeActivity, "Display Lists", Toast.LENGTH_SHORT).show()
             }
             override fun onFailure(call: Call<Page<PostSummaryDTO>>, t: Throwable) {
                 Toast.makeText(this@HomeActivity, "What the ..", Toast.LENGTH_SHORT).show()

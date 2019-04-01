@@ -9,15 +9,19 @@ import com.example.weroo.becksco.R
 import com.example.weroo.becksco.model.PostSummaryDTO
 import kotlinx.android.synthetic.main.item_post_summary.view.*
 
+// recycler view :
+
 class PostSummaryAdapter: RecyclerView.Adapter<PostSummaryAdapter.PostSummaryHolder>() {
 
     private val posts: MutableList<PostSummaryDTO> by lazy { mutableListOf<PostSummaryDTO>() }
 
     // RecyclerView의 행을 표시하는데 사용되는 layout xml을 가져오는 역할
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PostSummaryHolder {
+        // viewGroup: view를 자식으로 가질 수 있는 Group
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_post_summary, viewGroup, false)
         return PostSummaryHolder(v)
     }
+
     // RecyclerView의 행 갯수 리턴
     override fun getItemCount(): Int {
         return posts.size
