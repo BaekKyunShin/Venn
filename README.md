@@ -1,8 +1,8 @@
 # Android Posting Board Application Project
 ## Preview
-![sign in](https://cdn.bkshin.com/github/venn-sign_in.jpg){: width="100"}
-![board](https://cdn.bkshin.com/github/venn-board.jpg){: width="100"}
-![post](https://cdn.bkshin.com/github/venn-write_post.jpg){: width="100"}
+![sign in](https://cdn.bkshin.com/github/venn-sign_in.jpg)
+![board](https://cdn.bkshin.com/github/venn-board.jpg)
+![post](https://cdn.bkshin.com/github/venn-write_post.jpg)
 ## Application functions
  - splash view
  - sign in
